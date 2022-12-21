@@ -3,15 +3,16 @@ use serde::{Serialize, Deserialize};
 
 
 #[derive(Serialize, Deserialize)]
-struct Block{
+pub struct Block{
     prev_hash:[u8;32],
+    miner:[u8;32],
     transaction: Transaction,
-    hash:[u8;32]
+    pub hash:[u8;32]
 }
 
 impl Block{
-    fn new(prev_hash:[u8;32],transaction:Transaction,hash:[u8;32])->Self{
-        Self { prev_hash, transaction, hash}
+    pub fn new(prev_hash:[u8;32],public_key:[u8;32],transaction:Transaction,hash:[u8;32])->Self{
+        Self { prev_hash, miner:public_key, transaction, hash}
     }
 
 
