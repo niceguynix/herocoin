@@ -24,7 +24,7 @@ impl Miner{
             Ok(v) =>v,
         };
 
-        Self{private_key,public_key,peers:vec![root_peer]}
+        Self{private_key,public_key,blocks:vec![],peers:vec![root_peer]}
     }
 
     fn listen(&self){
@@ -36,7 +36,7 @@ impl Miner{
         }
     }
 
-    fn handle_transaction(&self,mut stream:TcpStream){
+    fn handle_transaction(&mut self,mut stream:TcpStream){
         let mut data =String::from("");
         stream.read_to_string(&mut data);
         let trans:Messages = serde_json::from_str(&data).expect("Wrong transaction format");
@@ -50,11 +50,11 @@ impl Miner{
     }
 
 
-    fn send_block(&self,stream:TcpStream){
+    fn send_block(&self,mut stream:TcpStream){
         write!(stream,"lmao");
     }
 
-    fn add_block(&self,stream:TcpStream){
+    fn add_block(&mut self,mut stream:TcpStream){
         let mut data = String::from("");
         stream.read_to_string(&mut data);
         let block:Block = serde_json::from_str(&data).expect("Wrong transaction format");
@@ -64,7 +64,7 @@ impl Miner{
         self.blocks.push(block);
     }
 
-    fn add_trans(&self,stream:TcpStream){
+    fn add_trans(&self,mut stream:TcpStream){
         let mut data = String::from("");
         stream.read_to_string(&mut data);
         let trans:Transaction = serde_json::from_str(&data).expect("Wrong transaction format");

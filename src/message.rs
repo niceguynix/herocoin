@@ -12,7 +12,7 @@ pub enum Messages{
 
 
 fn getBlocks(peers:Vec<IpAddr>)->Vec<Block>{
-    let blocks = Vec::new();
+    let mut blocks = Vec::new();
     for i in peers{
         let mut stream = TcpStream::connect((i,8080)).expect("failed");
         let msg = match serde_json::to_string(&Messages::GetBlock()){
@@ -25,10 +25,6 @@ fn getBlocks(peers:Vec<IpAddr>)->Vec<Block>{
         let block:Vec<Block> = serde_json::from_str(&data).expect("Wrong transaction format");
         blocks.extend(block);
 
-        return blocks;
     }
-
-
-    vec![]
-
+    blocks
 }
