@@ -5,6 +5,8 @@ use serde::{Deserialize, Serialize};
 use serde_json;
 use std::io::{BufReader, Read, Write};
 use std::net::{IpAddr, TcpListener, TcpStream};
+use std::collections::HashMap;
+
 
 mod block;
 mod crypto;
@@ -13,7 +15,7 @@ mod ibc;
 struct Miner {
     private_key: [u8; 32],
     public_key: [u8; 32],
-
+    accounts: HashMap<[u8;32],u128>,
     blocks: Vec<Block>,
     peers: Vec<IpAddr>,
 }
@@ -28,6 +30,7 @@ impl Miner {
         Self {
             private_key,
             public_key,
+            accounts:HashMap::new(),
             blocks: vec![],
             peers: vec![root_peer],
         }
