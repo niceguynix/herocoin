@@ -1,7 +1,7 @@
 mod block;
-mod transaction;
-mod miner;
 mod message;
+mod miner;
+mod transaction;
 
 fn main() {
     println!("Hello, world!");
