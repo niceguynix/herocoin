@@ -1,6 +1,7 @@
 use super::Miner;
 use std::io::Write;
 use std::net::{TcpListener, TcpStream};
+use serde_json;
 
 impl Miner {
     fn listen(&mut self) {
@@ -13,6 +14,7 @@ impl Miner {
     }
 
     pub fn send_block(&self, mut stream: TcpStream) {
-        write!(stream, "lmao");
+        let msg = serde_json::to_string(&self.blocks).expect("cant be wrong");
+        write!(stream, "{}",msg);
     }
 }
