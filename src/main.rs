@@ -7,6 +7,7 @@ mod wallet;
 
 use std::io;
 use miner::Miner;
+use wallet::Key;
 
 fn main() {
     let option = std::env::args().nth(1).expect("Specify miner or node option");
@@ -18,14 +19,13 @@ fn main() {
 }
 
 fn miner(){
-    let miner = Miner::new();
 }
 
 fn node(){
 }
 
 
-fn get_keys()->([u8;32],[u8;32]){
+fn get_keys()->(Key,Key){
     print!("Enter public key:");
     let mut s = String::with_capacity(2);
     io::stdin().read_line(&mut s).expect("User input Failed");
