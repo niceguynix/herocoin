@@ -1,6 +1,8 @@
 use std::net::IpAddr;
 use super::wallet::Key;
 
+mod ibc;
+
 pub struct Node{
     private_key: Key,
     public_key: Key,

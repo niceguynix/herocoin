@@ -21,7 +21,7 @@ pub struct Miner {
 }
 
 impl Miner {
-    fn new(private_key: Key, public_key: Key) -> Self {
+    pub fn new(private_key: Key, public_key: Key) -> Self {
         let root_peer: IpAddr = match "127.0.0.1".parse() {
             Err(_) => panic!("Woah"),
             Ok(v) => v,
