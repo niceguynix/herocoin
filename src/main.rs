@@ -9,6 +9,7 @@ use std::io;
 use miner::Miner;
 use wallet::Key;
 use node::Node;
+use std::io::Write;
 
 fn main() {
     let option = std::env::args().nth(1).expect("Specify miner or node option");
@@ -32,11 +33,14 @@ fn node(){
 
 fn get_keys()->(Key,Key){
     print!("Enter public key:");
+    io::stdout().flush().unwrap();
     let mut s = String::with_capacity(2);
     io::stdin().read_line(&mut s).expect("User input Failed");
-    let pbk = s.parse().expect("Wrong type");
+    let pbk = s.trim().parse().expect("Wrong type1");
     print!("Enter private key:");
+    io::stdout().flush().unwrap();
+    s="".to_owned();
     io::stdin().read_line(&mut s).expect("User input Failed");
-    let prk = s.parse().expect("Wrong type");
+    let prk = s.trim().parse().expect("Wrong type2");
     (pbk,prk)
 }

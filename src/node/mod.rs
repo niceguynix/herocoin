@@ -3,6 +3,7 @@ use super::wallet::Key;
 use std::str::FromStr;
 use super::transaction::Transaction;
 use std::clone;
+use std::io::Write;
 
 mod ibc;
 
@@ -41,6 +42,7 @@ impl Node{
 
 
 fn get_user_input<T: FromStr>() -> T {
+    std::io::stdout().flush().unwrap();
     let mut s = String::with_capacity(2);
     std::io::stdin().read_line(&mut s).expect("User input Failed");
     match s.trim().parse() {
