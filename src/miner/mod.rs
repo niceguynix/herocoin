@@ -12,7 +12,7 @@ mod block;
 mod crypto;
 mod ibc;
 
-struct Miner {
+pub struct Miner {
     private_key: [u8; 32],
     public_key: [u8; 32],
     accounts: HashMap<[u8;32],u128>,
