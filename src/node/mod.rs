@@ -1,5 +1,8 @@
 use std::net::IpAddr;
 use super::wallet::Key;
+use std::str::FromStr;
+use super::transaction::Transaction;
+use std::clone;
 
 mod ibc;
 
@@ -13,5 +16,35 @@ pub struct Node{
 impl Node{
     pub fn new(private_key:Key,public_key:Key)->Self{
         Self{private_key,public_key,peers:vec!["127.0.0.1".parse().expect("parse error")]}
+    }
+
+    fn run(&self){
+        let mut ch="y".to_owned();
+        while ch=="y"{
+            print!("Enter recieving wallet no: ");
+            let reciever = get_user_input();
+            print!("Enter recieving wallet no: ");
+            let amount = get_user_input();
+            let trans = Transaction::new(self.public_key ,reciever,amount);
+
+            self.transmit_transaction(trans);
+
+            print!("Another Transaction(y/n): ");
+            ch = get_user_input();
+        }
+
+    }
+
+
+}
+
+
+
+fn get_user_input<T: FromStr>() -> T {
+    let mut s = String::with_capacity(2);
+    std::io::stdin().read_line(&mut s).expect("User input Failed");
+    match s.trim().parse() {
+        Ok(n) => n,
+        Err(err) => panic!("Wrong input!"),
     }
 }

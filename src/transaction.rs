@@ -8,7 +8,20 @@ pub struct Transaction {
     sender: Key,
     reciever: Key,
     amount: u128,
+    sign: String,
 }
+
+impl Transaction{
+    pub fn new(sender:Key,reciever:Key,amount:u128)->Self{
+//        let sign = calc_hash();
+        let sign = "00000".to_owned();
+
+        Self{
+            sender,reciever,amount,sign
+        }
+    }
+}
+
 
 //impl Transaction{
 //    fn calc_hash(Self::){
