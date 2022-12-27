@@ -1,8 +1,9 @@
 use serde::{Deserialize, Serialize};
+use super::wallet::Key;
 
 #[derive(Serialize, Deserialize)]
 pub struct Transaction {
-    sender: [u8; 32],
-    reciever: [u8; 32],
+    sender: Key,
+    reciever: Key,
     amount: u128,
 }
