@@ -15,7 +15,7 @@ impl Block {
             prev_hash:Key,
             public_key: Key,
         transaction: Transaction,
-        hash: [u8; 32],
+            hash: Key,
     ) -> Self {
         Self {
             prev_hash,
