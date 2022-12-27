@@ -6,22 +6,22 @@ use serde_json;
 use std::io::{BufReader, Read, Write};
 use std::net::{IpAddr, TcpListener, TcpStream};
 use std::collections::HashMap;
-
+use super::wallet::Key;
 
 mod block;
 mod crypto;
 mod ibc;
 
 pub struct Miner {
-    private_key: [u8; 32],
-    public_key: [u8; 32],
-    accounts: HashMap<[u8;32],u128>,
+    private_key: Key,
+    public_key: Key,
+    accounts: HashMap<Key,u128>,
     blocks: Vec<Block>,
     peers: Vec<IpAddr>,
 }
 
 impl Miner {
-    fn new(private_key: [u8; 32], public_key: [u8; 32]) -> Self {
+    fn new(private_key: Key, public_key: Key) -> Self {
         let root_peer: IpAddr = match "127.0.0.1".parse() {
             Err(_) => panic!("Woah"),
             Ok(v) => v,

@@ -3,6 +3,7 @@ mod message;
 mod miner;
 mod transaction;
 mod node;
+mod wallet;
 
 use std::io;
 use miner::Miner;
