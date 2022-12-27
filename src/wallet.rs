@@ -2,7 +2,7 @@ use std::str::FromStr;
 use serde::{Deserialize, Serialize};
 
 #[derive(Serialize, Deserialize)]
-pub struct Key([u8;32]);
+pub struct Key(pub [u8;32]);
 
 impl FromStr for Key{
     type Err = std::string::ParseError;
