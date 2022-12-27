@@ -8,6 +8,7 @@ mod wallet;
 use std::io;
 use miner::Miner;
 use wallet::Key;
+use node::Node;
 
 fn main() {
     let option = std::env::args().nth(1).expect("Specify miner or node option");
@@ -19,9 +20,13 @@ fn main() {
 }
 
 fn miner(){
+    let (pbk,prk) = get_keys();
+    let client = Miner::new(prk,pbk);
 }
 
 fn node(){
+    let (pbk,prk) = get_keys();
+    let client = Node::new(prk,pbk);
 }
 
 

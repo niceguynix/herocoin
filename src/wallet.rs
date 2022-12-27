@@ -1,7 +1,8 @@
 use std::str::FromStr;
 use serde::{Deserialize, Serialize};
+use std::hash::{Hash};
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize,Hash)]
 pub struct Key(pub [u8;32]);
 
 impl FromStr for Key{
