@@ -22,7 +22,8 @@ fn main() {
 
 fn miner(){
     let (pbk,prk) = get_keys();
-    let client = Miner::new(prk,pbk);
+    let mut client = Miner::new(prk,pbk);
+    client.run();
 }
 
 fn node(){
