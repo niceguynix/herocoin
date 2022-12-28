@@ -47,7 +47,7 @@ impl Miner {
         let trans: Messages = serde_json::from_str(&data.lines().nth(0).expect("error")).expect("Wrong transaction format");
         let data = data.lines().nth(1).expect("se");
         match trans {
-            Messages::GetBlock() => self.send_block(stream)
+            Messages::GetBlock() => self.send_block(stream),
             Messages::AddBlock() => self.add_block(data),
             Messages::AddTransaction() => self.add_trans(data),
         }
