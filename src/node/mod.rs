@@ -16,7 +16,7 @@ pub struct Node{
 
 impl Node{
     pub fn new(private_key:Key,public_key:Key)->Self{
-        Self{private_key,public_key,peers:vec!["127.0.0.1".parse().expect("parse error")]}
+        Self{private_key,public_key,peers:vec!["172.17.0.1".parse().expect("parse error")]}
     }
 
     pub fn run(&self){
