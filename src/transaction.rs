@@ -6,8 +6,8 @@ use std::hash::{Hash, Hasher};
 #[derive(Serialize, Deserialize,Hash)]
 pub struct Transaction {
     sender: Key,
-    reciever: Key,
-    amount: u128,
+    pub reciever: Key,
+    pub amount: u128,
     sign: String,
 }
 

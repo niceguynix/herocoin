@@ -14,16 +14,19 @@ impl Miner {
         self.blocks.push(block);
     }
 
-    pub fn create_block(&self, trans: Transaction) {
+    pub fn create_block(&mut self, trans: Transaction) {
         let last_hash = match self.blocks.last() {
             Some(n) => n.hash,
             None => Self::genesis_block().hash,
         };
         let hash = self.compute_hash();
+        self.accounts.insert(trans.reciever,trans.amount);
         let block = Block::new(last_hash, self.public_key, trans, hash);
+
+        self.blocks.push(block);
     }
 
-    pub fn add_trans(&self, data:&str) {
+    pub fn add_trans(&mut self, data:&str) {
         let trans: Transaction = serde_json::from_str(&data).expect("Wrong transaction format");
         self.create_block(trans);
     }
