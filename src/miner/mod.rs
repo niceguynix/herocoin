@@ -36,6 +36,10 @@ impl Miner {
         }
     }
 
+    pub fn run(&mut self){
+         self.listen();
+    }
+
     fn handle_transaction(&mut self, mut stream: TcpStream) {
         let mut data = String::from("");
         stream.read_to_string(&mut data);

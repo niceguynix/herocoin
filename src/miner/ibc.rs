@@ -4,7 +4,7 @@ use std::net::{TcpListener, TcpStream};
 use serde_json;
 
 impl Miner {
-    fn listen(&mut self) {
+    pub fn listen(&mut self) {
         let listener = TcpListener::bind("127.0.0.1:7878").unwrap();
 
         for stream in listener.incoming() {
