@@ -40,6 +40,23 @@ impl Miner {
          self.listen();
     }
 
+    fn genesis_block()->Block{
+        let prev_hash = Key([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0, 0, 0,]);
+        let public_key =Key([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0, 0, 0,]);
+        let sender =Key([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0, 0, 0,]);
+        let reciever =Key([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0, 0, 0,]);
+        let amount =0;
+        let hash =Key([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0, 0, 0,]);
+        let sign = 000;
+        let transaction = Transaction::new(sender,reciever,amount);
+        Block::new(
+                prev_hash,
+                public_key,
+                transaction,
+                hash,
+        )
+    }
+
     fn handle_transaction(&mut self, mut stream: TcpStream) {
         let mut data = String::from("");
         stream.read_to_string(&mut data);

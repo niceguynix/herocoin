@@ -15,12 +15,12 @@ impl Miner {
     }
 
     pub fn create_block(&self, trans: Transaction) {
-        let last_block = match self.blocks.last() {
-            Some(n) => n,
-            None => panic!("Error no genesis block created"),
+        let last_hash = match self.blocks.last() {
+            Some(n) => n.hash,
+            None => Self::genesis_block().hash,
         };
         let hash = self.compute_hash();
-        let block = Block::new(last_block.hash, self.public_key, trans, hash);
+        let block = Block::new(last_hash, self.public_key, trans, hash);
     }
 
     pub fn add_trans(&self, data:&str) {
