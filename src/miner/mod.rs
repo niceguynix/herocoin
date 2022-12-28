@@ -43,6 +43,7 @@ impl Miner {
     fn handle_transaction(&mut self, mut stream: TcpStream) {
         let mut data = String::from("");
         stream.read_to_string(&mut data);
+        println!("{}",data);
         let trans: Messages = serde_json::from_str(&data).expect("Wrong transaction format");
         match trans {
             Messages::GetBlock() => self.send_block(stream),
