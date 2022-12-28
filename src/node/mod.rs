@@ -19,12 +19,12 @@ impl Node{
         Self{private_key,public_key,peers:vec!["127.0.0.1".parse().expect("parse error")]}
     }
 
-    fn run(&self){
+    pub fn run(&self){
         let mut ch="y".to_owned();
         while ch=="y"{
             print!("Enter recieving wallet no: ");
             let reciever = get_user_input();
-            print!("Enter recieving wallet no: ");
+            print!("Enter amount: ");
             let amount = get_user_input();
             let trans = Transaction::new(self.public_key ,reciever,amount);
 

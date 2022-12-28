@@ -28,6 +28,7 @@ fn miner(){
 fn node(){
     let (pbk,prk) = get_keys();
     let client = Node::new(prk,pbk);
+    client.run();
 }
 
 
