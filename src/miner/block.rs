@@ -6,10 +6,8 @@ use std::io::Read;
 use std::net::TcpStream;
 
 impl Miner {
-    pub fn add_block(&mut self, mut stream: TcpStream) {
-        let mut data = String::from("");
-        stream.read_to_string(&mut data);
-        let block: Block = serde_json::from_str(&data).expect("Wrong transaction format");
+    pub fn add_block(&mut self, data:&str) {
+        let block: Block = serde_json::from_str(data).expect("Wrong transaction format");
         if !Self::verify_block() {
             return;
         }
@@ -25,9 +23,7 @@ impl Miner {
         let block = Block::new(last_block.hash, self.public_key, trans, hash);
     }
 
-    pub fn add_trans(&self, mut stream: TcpStream) {
-        let mut data = String::from("");
-        stream.read_to_string(&mut data);
+    pub fn add_trans(&self, data:&str) {
         let trans: Transaction = serde_json::from_str(&data).expect("Wrong transaction format");
         self.create_block(trans);
     }
